@@ -1,0 +1,7 @@
+﻿.frame{
+    filter: blur(50px);
+    background-color: Red;
+}
+image{
+    height: 200px;
+}

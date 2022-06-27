@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:GaleriaDeArte.ViewModels"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:dd="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:sh="http://sharpnado.com"
+             Background="#fefeff"
+             Title="Editar obra"
+             x:Class="GaleriaDeArte.Views.EditarView">
+    <ContentPage.BindingContext>
+        <vm:PinturasViewModel x:Name="pvm"></vm:PinturasViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <Style TargetType="Entry">
+            <Setter Property="Background" Value="#ebdcd5"></Setter>
+            <Setter Property="PlaceholderColor" Value="Gray"></Setter>
+            <Setter Property="Margin" Value="10"></Setter>
+        </Style>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid>
+
+            <sh:Shadows CornerRadius="1"
+                    Shades="{sh:SingleShade Offset='1, 8', Opacity=0.5, Color=Gray}"
+                    Margin="5">
+                <Frame Background="#fffaff"
+               Margin="20"
+               CornerRadius="5">
+                    <Grid>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition Height="50"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+
+                        <StackLayout Grid.Row="0">
+
+                            <Frame Background="#ebd8d0"
+                   MinimumHeightRequest="100"
+                   HeightRequest="100"
+                   CornerRadius="5"
+                   Padding="0"
+                   WidthRequest="300"
+                   MinimumWidthRequest="100"
+                   HorizontalOptions="Center">
+                                <Label VerticalOptions="Center"
+                                   HorizontalOptions="Center"
+                                   FontSize="35"
+                                   Padding="0"
+                                   Margin="0"
+                                   TextColor="gray"
+                                   Text="Nueva obra"></Label>
+                            </Frame>
+                            <Entry Placeholder="Nombre de la pintura"
+                                   Margin="10,30,10,10"
+                   Text="{Binding Pintura.Nombre}"></Entry>
+                            <Entry Placeholder="Nombre del artista"
+                   Text="{Binding Pintura.Artista}"></Entry>
+                            <Entry Placeholder="Año de publicacion"
+                   Text="{Binding Pintura.Aaaa}"
+                    Keyboard="Numeric"></Entry>
+                            <Entry Placeholder="Descripcion de la obra"
+                   Text="{Binding Pintura.Descripcion}"></Entry>
+                            <Entry Placeholder="Enlace a la imagen de la pintura"
+                   Text="{Binding Pintura.Imagen}"></Entry>
+
+                        </StackLayout>
+
+
+                        <Button Text="Guardar cambios"
+                                        Grid.Row="1"
+                                        Background="#d2aa9e"
+                                        Command="{Binding GuardarCommand}"></Button>
+
+
+                    </Grid>
+                </Frame>
+
+            </sh:Shadows>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

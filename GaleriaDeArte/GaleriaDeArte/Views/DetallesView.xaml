@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:GaleriaDeArte.ViewModels"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:dd="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:sh="http://sharpnado.com"
+             Background="#fefeff"
+             Title="Pintura"
+             x:Class="GaleriaDeArte.Views.DetallesView">
+    <ContentPage.BindingContext>
+        <vm:PinturasViewModel></vm:PinturasViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="HorizontalOptions" Value="Center"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <SwipeView>
+            <sh:Shadows CornerRadius="5"  
+                        Shades="{sh:SingleShade Offset='0, 6', Opacity=0.7, Color=Gray}"
+                        Margin="20">
+                <Frame CornerRadius="5">
+                    <StackLayout>
+                        
+                        <Frame HeightRequest="300"
+                               WidthRequest="200"
+                               MinimumHeightRequest="300"
+                               MinimumWidthRequest="200"
+                               HorizontalOptions="Center"
+                               CornerRadius="5"
+                               Padding="0">
+                            <Image Source="{Binding Imagen}"
+                                   Scale="1.5"
+                                   HeightRequest="200"></Image>
+                        </Frame>
+                        
+                        <Label Text="{Binding Nombre}"
+                               HorizontalOptions="Center"
+                               FontSize="30"
+                               TextColor="Black"></Label>
+                        <Label Text="{Binding Artista}"
+                               HorizontalOptions="Center"
+                               Margin="0, -10, 0, 0"></Label>
+
+                        <Label Text="{Binding Aaaa}"></Label>
+
+                        <Label Text="{Binding Descripcion}"
+                               HorizontalTextAlignment="Center"></Label>
+
+
+                    </StackLayout>
+                </Frame>
+            </sh:Shadows>
+
+
+        </SwipeView>
+
+
+    </ContentPage.Content>
+</ContentPage>

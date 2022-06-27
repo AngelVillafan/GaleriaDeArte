@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sh="http://sharpnado.com"
+             xmlns:vm="clr-namespace:GaleriaDeArte.ViewModels"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:dd="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             Title="Obras"
+             x:Class="GaleriaDeArte.Views.GaleriaView" Background="#fefeff">
+    <ContentPage.BindingContext>
+        <vm:PinturasViewModel x:Name="pvm"></vm:PinturasViewModel>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="Gray"></Setter>
+            <Setter Property="Padding" Value="0"></Setter>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#fffaff"></Setter>
+            <Setter Property="BorderWidth" Value=".1"></Setter>
+            <Setter Property="BorderColor" Value="Gray"></Setter>
+        </Style>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="70"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="1"
+                  Margin="0,0,0,15">
+
+                <sh:Shadows CornerRadius="1"
+                            Shades="{sh:SingleShade Offset='0, 6', Opacity=0.7, Color=Gray}"
+                            Margin="5">
+                    <Button Text="Agregar"
+                            Background="#d2aa9e"
+                            WidthRequest="300"
+                            Command="{Binding CambiarVistaCommand}"
+                            CommandParameter="Agregar"
+                            HorizontalOptions="CenterAndExpand">
+                    </Button>
+
+                </sh:Shadows>
+            </Grid>
+
+            <ScrollView Grid.Row="0">
+                <CollectionView ItemsSource="{Binding Galeria}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <SwipeView>
+                                <SwipeView.LeftItems>
+                                    <SwipeItemView Command="{Binding Source={x:Reference pvm}, Path=EditarCommand}" 
+                                                   CommandParameter="{Binding .}">
+                                        <Grid WidthRequest="85" MinimumWidthRequest="85">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition></RowDefinition>
+                                                <RowDefinition></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Image Source="../drawable/edit.png"
+                                                   HeightRequest="35"
+                                                   MinimumHeightRequest="30"
+                                                   HorizontalOptions="Center"
+                                                   VerticalOptions="End"></Image>
+                                            <Label Grid.Row="1"
+                                                   VerticalOptions="Start"
+                                                   HorizontalOptions="Center"
+                                                   Text="Editar"></Label>
+                                        </Grid>
+                                    </SwipeItemView>
+                                    <SwipeItemView Command="{Binding Source={x:Reference pvm}, Path=QuieresEliminarCommand}" 
+                                                   CommandParameter="{Binding .}">
+                                        <Grid WidthRequest="85" MinimumWidthRequest="85">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition></RowDefinition>
+                                                <RowDefinition></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Image Source="../drawable/delete.png"
+                                                   HeightRequest="35"
+                                                   MinimumHeightRequest="30"
+                                                   HorizontalOptions="Center"
+                                                   VerticalOptions="End"></Image>
+                                            <Label Grid.Row="1"
+                                                   VerticalOptions="Start"
+                                                   HorizontalOptions="Center"
+                                                   Text="Eliminar"></Label>
+                                        </Grid>
+                                    </SwipeItemView>
+                                    
+                                    
+                                </SwipeView.LeftItems>
+                               
+
+                                <sh:Shadows CornerRadius="1"  
+                                            Shades="{sh:SingleShade Offset='0, 6', Opacity=0.7, Color=Gray}"
+                                            Margin="5">
+                                    <Frame HorizontalOptions="CenterAndExpand"
+                                   MinimumWidthRequest="500"
+                                           WidthRequest="500"
+                                   Margin="15"
+                                   HasShadow="True"
+                                   CornerRadius="5"
+                                   Padding="5"
+                                   BackgroundColor="#fffaff"
+                                   class="frame">
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={x:Reference pvm}, Path=MostrarDetallesCommand}"
+                                                                  CommandParameter="{Binding .}">
+
+                                            </TapGestureRecognizer>
+                                        </Frame.GestureRecognizers>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Frame Padding="0" CornerRadius="5">
+                                                <Image Source="{Binding Imagen}" 
+                                                       MinimumHeightRequest="100"
+                                                       Grid.Column="0" 
+                                                       Scale="1.5" 
+                                                       HorizontalOptions="Center"></Image>
+
+                                            </Frame>
+                                            <StackLayout Grid.Column="1">
+                                                <Label FontAttributes="Bold" 
+                                               TextColor="Black" 
+                                               Text="{Binding Nombre}"></Label>
+                                                <Label Text="{Binding Artista}"
+                                               Margin="0, -5, 0, 0"></Label>
+                                                <Label Text="{Binding Aaaa}"></Label>
+                                                <Label Text="{Binding Descripcion}"
+                                               FontSize="Small"></Label>
+
+
+                                            </StackLayout>
+                                        </Grid>
+
+                                    </Frame>
+                                </sh:Shadows>
+                            
+                            </SwipeView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
